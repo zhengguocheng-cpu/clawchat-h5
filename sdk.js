@@ -1,8 +1,8 @@
 // 同步 H5 页面到最新配置
 const config = {
   openIM: {
-    apiUrl: 'http://127.0.0.1:10001/api',
-    wsUrl: 'ws://127.0.0.1:10001/ws'
+    apiUrl: 'http://127.0.0.1:10002/api',
+    wsUrl: 'ws://127.0.0.1:10002/ws'
   },
   app: {
     name: 'ClawChat',
