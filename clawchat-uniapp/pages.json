@@ -1,0 +1,64 @@
+{
+  "pages": [
+    {
+      "path": "pages/login/index",
+      "style": {
+        "navigationBarTitleText": "登录 - ClawChat",
+        "navigationStyle": "custom"
+      }
+    },
+    {
+      "path": "pages/chat/index",
+      "style": {
+        "navigationBarTitleText": "ClawChat",
+        "enablePullDownRefresh": false
+      }
+    },
+    {
+      "path": "pages/bots/index",
+      "style": {
+        "navigationBarTitleText": "机器人库",
+        "enablePullDownRefresh": false
+      }
+    },
+    {
+      "path": "pages/mybots/index",
+      "style": {
+        "navigationBarTitleText": "我的机器人",
+        "enablePullDownRefresh": false
+      }
+    }
+  ],
+  "globalStyle": {
+    "navigationBarTitleText": "ClawChat",
+    "navigationBarBackgroundColor": "#F5F5F5",
+    "navigationBarTextStyle": "black",
+    "backgroundColor": "#F5F5F5"
+  },
+  "tabBar": {
+    "color": "#999999",
+    "selectedColor": "#1890ff",
+    "backgroundColor": "#ffffff",
+    "borderStyle": "black",
+    "list": [
+      {
+        "pagePath": "pages/chat/index",
+        "iconPath": "static/tabbar/chat.png",
+        "selectedIconPath": "static/tabbar/chat-active.png",
+        "text": "消息"
+      },
+      {
+        "pagePath": "pages/bots/index",
+        "iconPath": "static/tabbar/bot.png",
+        "selectedIconPath": "static/tabbar/bot-active.png",
+        "text": "机器人"
+      },
+      {
+        "pagePath": "pages/mybots/index",
+        "iconPath": "static/tabbar/user.png",
+        "selectedIconPath": "static/tabbar/user-active.png",
+        "text": "我的"
+      }
+    ]
+  }
+}

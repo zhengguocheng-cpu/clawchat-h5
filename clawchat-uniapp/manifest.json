@@ -1,0 +1,59 @@
+{
+  "name": "ClawChat",
+  "description": "AI智能聊天 - ClawChat 官方客户端",
+  "versionName": "1.0.0",
+  "versionCode": "100",
+  "appid": "__UNI__CLAWCHAT001",
+  "app-plus": {
+    "usingComponents": true,
+    "nvueCompiler": "uni-app",
+    "splashscreen": {
+      "alwaysShowBeforeRender": true,
+      "autostart": true,
+      "background": "#F5F5F5"
+    },
+    "modules": {},
+    "sdkConfigs": {},
+    "distribute": {
+      "android": {
+        "packagename": "com.clawchat.app",
+        "minSdkVersion": "21",
+        "targetSdkVersion": "30",
+        "abiFilters": ["armeabi-v7a", "arm64-v8a"],
+        "permissions": [
+          "<uses-permission android:name=\"android.permission.INTERNET\" />",
+          "<uses-permission android:name=\"android.permission.ACCESS_NETWORK_STATE\" />",
+          "<uses-permission android:name=\"android.permission.ACCESS_WIFI_STATE\" />",
+          "<uses-permission android:name=\"android.permission.READ_PHONE_STATE\" />",
+          "<uses-permission android:name=\"android.permission.WRITE_EXTERNAL_STORAGE\" />"
+        ],
+        "screens": {
+          "small": true,
+          "normal": true,
+          "large": true,
+          "xlarge": true
+        }
+      },
+      "ios": {},
+      "alias": {},
+      "splashscreen": {}
+    }
+  },
+  "mp-weixin": {
+    "appid": "",
+    "setting": {
+      "urlCheck": false
+    }
+  },
+  "mp-alipay": {
+    "appid": "",
+    "setting": {
+      "urlCheck": false
+    }
+  },
+  "h5": {
+    "router": {
+      "mode": "hash"
+    }
+  }
+}
