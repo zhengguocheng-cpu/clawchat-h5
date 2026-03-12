@@ -1,0 +1,91 @@
+    // 聊天页 - 集成 OpenIM SDK
+    app.component('Chat', {
+      props: ['activeBot'],
+      data() {
+        return {
+          inputValue: '',
+          messages: [
+            { content: '你好！我是 ' + (this.activeBot?.name || 'AI小爪') + '，有什么可以帮你的吗？', sender: 'bot', time: '10:30' }
+          ],
+          sdk: null,
+          botID: this.activeBot?.id || 'bot_001'
+        };
+      },
+      computed: {
+        botName() { return this.activeBot?.name || 'AI小爪'; }
+      },
+      template: `
+        <div class="chat-container">
+          <div class="chat-header">
+            <div>
+              <div class="chat-header-title">{{ botName }}</div>
+              <div class="chat-subtitle">正在对话中...</div>
+            </div>
+          </div>
+          <div class="message-list" ref="msgList">
+            <div v-for="(msg, idx) in messages" :key="idx" class="message-bubble" :class="msg.sender === 'bot' ? 'bot' : 'user'">
+              <span>{{ msg.content }}</span>
+            </div>
+          </div>
+          <div class="input-area">
+            <textarea v-model="inputValue" placeholder="输入消息..." rows="1" @keydown.enter="handleSend" ref="ta" />
+            <button class="btn-send" @click="handleSend">发送</button>
+          </div>
+        </div>
+      `,
+      watch: {
+        inputValue() {
+          this.$nextTick(() => {
+            if (this.$refs.ta) {
+              this.$refs.ta.style.height = 'auto';
+              this.$refs.ta.style.height = this.$refs.ta.scrollHeight + 'px';
+            }
+          });
+        }
+      },
+      mounted() {
+        this.sdk = new OpenIMSDK({
+          openIM: {
+            apiUrl: 'http://127.0.0.1:10001/api',
+            wsUrl: 'ws://127.0.0.1:10001/ws'
+          }
+        });
+        this.sdk.onMessage(this.handleIncomingMessage);
+        this.scrollToBottom();
+      },
+      methods: {
+        scrollToBottom() {
+          this.$nextTick(() => {
+            if (this.$refs.msgList) this.$refs.msgList.scrollTop = this.$refs.msgList.scrollHeight;
+          });
+        },
+        async handleSend() {
+          if (!this.inputValue.trim()) return;
+          
+          this.messages.push({
+            content: this.inputValue.trim(),
+            sender: 'user',
+            time: new Date().toLocaleTimeString('zh-CN', { hour: '2-digit', minute: '2-digit' })
+          });
+          const text = this.inputValue;
+          this.inputValue = '';
+          this.scrollToBottom();
+          
+          try {
+            await this.sdk.sendMessage(this.botID, text);
+            console.log('发送成功');
+          } catch (e) {
+            alert('发送失败: ' + e.message);
+          }
+        },
+        handleIncomingMessage(message) {
+          console.log('收到新消息:', message);
+          this.messages.push({
+            content: message.content || '收到！',
+            sender: 'bot',
+            time: new Date().toLocaleTimeString('zh-CN', { hour: '2-digit', minute: '2-digit' })
+          });
+          this.scrollToBottom();
+        }
+      }
+    });
