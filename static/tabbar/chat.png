@@ -1,0 +1,6 @@
+/* Chat Tabbar Icon Placeholder */
+<svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <path d="M24 4C13.5 4 5 12.5 5 23.5C5 34.5 24 44 24 44C24 44 43 34.5 43 23.5C43 12.5 34.5 4 24 4Z" stroke="#999999" stroke-width="3" stroke-linejoin="round"/>
+  <path d="M16 23H22" stroke="#999999" stroke-width="3" stroke-linecap="round"/>
+  <path d="M16 31H32" stroke="#999999" stroke-width="3" stroke-linecap="round"/>
+</svg>
