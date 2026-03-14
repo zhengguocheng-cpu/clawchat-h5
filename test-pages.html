@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ClawChat - Test</title>
+  <style>
+    body { background: #17212b; color: white; font-family: sans-serif; text-align: center; padding: 50px; }
+    h1 { color: #5288c1; font-size: 48px; margin-bottom: 20px; }
+    .test-pass { color: #4caf50; font-size: 24px; margin-top: 20px; }
+    .test-fail { color: #f44336; font-size: 24px; margin-top: 20px; }
+  </style>
+</head>
+<body>
+  <h1>🤖 ClawChat</h1>
+  <p>GitHub Pages 测试页面</p>
+  <div id="result"></div>
+  
+  <script>
+    const result = document.getElementById('result');
+    
+    // 测试 persistence.js
+    try {
+      window.pstorage = {
+        set: (k, v) => localStorage.setItem('clawchat_' + k, JSON.stringify(v)),
+        get: (k, def) => {
+          const v = localStorage.getItem('clawchat_' + k);
+          return v ? JSON.parse(v) : def;
+        }
+      };
+      
+      window.pstorage.set('test', 'works');
+      const val = window.pstorage.get('test');
+      
+      if (val === 'works') {
+        result.innerHTML = '<div class="test-pass">✅ GitHub Pages 正常运行！</div><div class="test-pass">✅ persistence.js 正常工作！</div>';
+      } else {
+        result.innerHTML = '<div class="test-fail">❌ persistence.js 测试失败</div>';
+      }
+    } catch (e) {
+      result.innerHTML = '<div class="test-fail">❌ 错误: ' + e.message + '</div>';
+    }
+  </script>
+</body>
+</html>
